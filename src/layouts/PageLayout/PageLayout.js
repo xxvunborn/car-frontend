@@ -3,11 +3,14 @@ import { IndexLink, Link } from 'react-router'
 import Header from '../../components/Header'
 import Footer from '../../components/footer'
 import PropTypes from 'prop-types'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './PageLayout.scss'
 
 export const PageLayout = ({ children }) => (
   <div className='container text-center'>
+   <MuiThemeProvider>
     <Header />
+    </MuiThemeProvider>
     <div className='page-layout__viewport'>
       {children}
     </div>

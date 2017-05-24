@@ -6,7 +6,11 @@ import './Footer.scss'
 class Footer extends Component {
   render() {
     return (
-        <div> Test footer </div>
+        <footer>
+          <div class="mui-container mui--text-center">
+            Made with ♥ by <a href="#">By TRIBILINES</a>
+          </div>
+        </footer>
         )
   }
 }
