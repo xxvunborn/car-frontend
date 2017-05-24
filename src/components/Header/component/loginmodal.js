@@ -10,7 +10,7 @@ const customContentStyle = {
   maxWidth: 'none',
 };
 
-export default class LoginModal extends Component {
+ class LoginModal extends Component {
   constructor(){
     super();
     this.state = {
@@ -64,3 +64,5 @@ export default class LoginModal extends Component {
     );
   }
 }
+
+export default LoginModal
