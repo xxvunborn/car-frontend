@@ -8,7 +8,7 @@ class Footer extends Component {
     return (
         <footer>
           <div class="mui-container mui--text-center">
-            Made with ♥ by <a href="#">By TRIBILINES</a>
+            Made with ♥ by <a href="#">TRIBILINES</a>
           </div>
         </footer>
         )
