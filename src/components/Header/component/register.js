@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 const customContentStyle = {
-  width: '35%',
+  width: '45%',
   maxWidth: 'none',
 };
 
@@ -27,48 +27,91 @@ export default class RegisterModal extends Component {
 
   render() {
     const actions = [
-      <FlatButton
+      <RaisedButton
         label="Cancelar"
-        primary={true}
+        buttonStyle={{
+          borderRadius: 0,
+        }}
+        style={{
+          boxShadow: 0,
+          marginRight: 10
+        }}
         onTouchTap={this.handleClose}
       />,
-      <FlatButton
+      <RaisedButton
+        backgroundColor="#000"
+        labelColor="#FFF"
         label="Aceptar"
-        primary={true}
+        buttonStyle={{
+          borderRadius: 0
+        }}
         onTouchTap={this.handleClose}
       />,
     ];
 
     return (
       <div>
-        <FlatButton label="Crear Cuenta" secondary={true} onTouchTap={this.handleOpen} />
-        <Dialog title="Nueva Cuenta" actions={actions} open={this.state.open} contentStyle={customContentStyle} >
-          <TextField
-            hintText="Escriba su nombre"
-            floatingLabelText="Nombre"
-            fullWidth={true}
-          />
-          <TextField
-            hintText="Escriba su apellido"
-            floatingLabelText="Apellido"
-            fullWidth={true}
-          />
-          <TextField
-            hintText="Esciba su constraseña"
-            floatingLabelText="Contraseña"
-            type="password"
-            fullWidth={true}
-          />
-          <TextField
-            hintText="Escriba su email"
-            floatingLabelText="Correo Electrónico"
-            fullWidth={true}
-          />
-          <TextField
-            hintText="Escriba su numero de contacto"
-            floatingLabelText="Numero Telefónico"
-            fullWidth={true}
-          />
+        <FlatButton
+          label="Crear Cuenta"
+          labelColor="#000"
+          style={{
+            marginLeft: 10
+          }}
+          onTouchTap={this.handleOpen}
+        />
+      <Dialog title="NUEVA CUENTA" actions={actions} open={this.state.open} contentStyle={customContentStyle} className="text-center">
+          <div className="row">
+            <div className="col l6">
+              <TextField
+                hintText="Escriba su nombre"
+                floatingLabelText="Nombre"
+                fullWidth={true}
+                floatingLabelStyle={{color: '#4c5661'}}
+                underlineFocusStyle={{borderColor: '#000'}}
+              />
+              <TextField
+                hintText="Escriba su correo electrónico"
+                floatingLabelText="Correo Electrónico"
+                fullWidth={true}
+                floatingLabelStyle={{color: '#4c5661'}}
+                underlineFocusStyle={{borderColor: '#000'}}
+              />
+              <TextField
+                hintText="Escriba su contraseña"
+                floatingLabelText="Contraseña"
+                type="password"
+                fullWidth={true}
+                floatingLabelStyle={{color: '#4c5661'}}
+                underlineFocusStyle={{borderColor: '#000'}}
+              />
+            </div>
+            <div className="col l6">
+              <TextField
+                hintText="Escriba sus apellidos"
+                floatingLabelText="Apellidos"
+                fullWidth={true}
+                floatingLabelStyle={{color: '#4c5661'}}
+                underlineFocusStyle={{borderColor: '#000'}}
+              />
+              <TextField
+                hintText="Escriba su número de contacto"
+                floatingLabelText="Número Teléfonico"
+                fullWidth={true}
+                floatingLabelStyle={{color: '#4c5661'}}
+                underlineFocusStyle={{borderColor: '#000'}}
+              />
+              <TextField
+                hintText="Repita su contraseña"
+                floatingLabelText="Repita Contraseña"
+                type="password"
+                fullWidth={true}
+                floatingLabelStyle={{color: '#4c5661'}}
+                underlineFocusStyle={{borderColor: '#000'}}
+              />
+            </div>
+          </div>
+
+
         </Dialog>
       </div>
     );

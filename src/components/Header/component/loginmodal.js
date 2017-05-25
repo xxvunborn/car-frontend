@@ -6,7 +6,7 @@ import FontIcon from 'material-ui/FontIcon';
 import TextField from 'material-ui/TextField';
 
 const customContentStyle = {
-  width: '35%',
+  width: '45%',
   maxWidth: 'none',
 };
 
@@ -28,14 +28,24 @@ const customContentStyle = {
 
   render() {
     const actions = [
-      <FlatButton
+      <RaisedButton
         label="Cancelar"
-        primary={true}
+        buttonStyle={{
+          borderRadius: 0,
+        }}
+        style={{
+          boxShadow: 0,
+          marginRight: 10
+        }}
         onTouchTap={this.handleClose}
       />,
-      <FlatButton
+      <RaisedButton
+        backgroundColor="#000"
+        labelColor="#FFF"
         label="Aceptar"
-        primary={true}
+        buttonStyle={{
+          borderRadius: 0
+        }}
         onTouchTap={this.handleClose}
       />,
     ];
@@ -43,21 +53,29 @@ const customContentStyle = {
     return (
       <div>
         <RaisedButton
-          icon={<FontIcon className="material-icons">person</FontIcon>}
+          backgroundColor="#000"
+          labelColor="#FFF"
           label="Iniciar Sesión"
-          primary={true}
-          onTouchTap={this.handleOpen} />
-        <Dialog title="Login" actions={actions} open={this.state.open} contentStyle={customContentStyle} >
+          buttonStyle={{
+            borderRadius: 0
+          }}
+          onTouchTap={this.handleOpen}
+        />
+        <Dialog title="INICIAR SESIÓN" actions={actions} open={this.state.open} contentStyle={customContentStyle} className='text-center'>
           <TextField
             hintText="Escriba su email"
             floatingLabelText="Usuario"
             fullWidth={true}
+            floatingLabelStyle={{color: '#4c5661'}}
+            underlineFocusStyle={{borderColor: '#000'}}
           />
           <TextField
-            hintText="Esciba su constraseña"
+            hintText="Escriba su constraseña"
             floatingLabelText="Contraseña"
             type="password"
             fullWidth={true}
+            floatingLabelStyle={{color: '#4c5661'}}
+            underlineFocusStyle={{borderColor: '#000'}}
           />
         </Dialog>
       </div>

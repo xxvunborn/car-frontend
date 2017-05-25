@@ -3,6 +3,7 @@ import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import './Header.scss'
 
 // Components
 import LoginModal from './component/loginmodal';
@@ -21,7 +22,7 @@ class Header extends Component {
 
   render() {
     return (
-      <Toolbar>
+      <Toolbar className='toolbar-menu'>
         <ToolbarGroup firstChild={true}>
           <DropDownMenu value={this.state.value} onChange={this.handleChange}>
             <MenuItem value={1} primaryText="All Broadcasts" />
@@ -34,9 +35,6 @@ class Header extends Component {
           </DropDownMenu>
         </ToolbarGroup>
         <ToolbarGroup>
-          <ToolbarTitle text="Opciones" />
-            <FontIcon className="material-icons">menu</FontIcon>
-          <ToolbarSeparator />
           <LoginModal />
           <RegisterModal />
         </ToolbarGroup>
