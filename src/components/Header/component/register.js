@@ -57,6 +57,7 @@ export default class RegisterModal extends Component {
                 this.setState({disabled: true})
             } else {
               console.log("incorrect passwords")
+                this.setState({disabled: false})
             }
         })
   }
