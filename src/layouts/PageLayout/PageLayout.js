@@ -11,20 +11,18 @@ import './PageLayout.scss'
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
-export const PageLayout = ({ children }) => (
-  <div className='text-center'>
-    <div className='container'>
-      <MuiThemeProvider>
-        <Header />
-      </MuiThemeProvider>
-      <div className='page-layout__viewport'>
+const PageLayout = ({ children }) => (
+  <MuiThemeProvider>
+    <div className="text-center">
+      <Header />
+      <div className="page-layout__viewport">
         {children}
       </div>
+      <Footer/>
     </div>
-    <Footer/>
-  </div>
-
+  </MuiThemeProvider>
 )
+
 PageLayout.propTypes = {
   children: PropTypes.node,
 }

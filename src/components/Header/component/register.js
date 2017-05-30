@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 const customContentStyle = {
-  width: '45%',
+  width: '50%',
   maxWidth: 'none',
 };
 
@@ -110,8 +110,6 @@ export default class RegisterModal extends Component {
               />
             </div>
           </div>
-
-
         </Dialog>
       </div>
     );
