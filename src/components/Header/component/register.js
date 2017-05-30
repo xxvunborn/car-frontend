@@ -93,12 +93,15 @@ export default class RegisterModal extends Component {
         onTouchTap={this.handleClose}
       />,
       <RaisedButton
-        backgroundColor="#000"
+        backgroundColor="#FF5252"
         labelColor="#FFF"
-        label="Aceptar"
+        label="Crear Cuenta"
         disabled={!this.state.disabled}
         buttonStyle={{
           borderRadius: 0
+        }}
+        style={{
+          boxShadow: 0
         }}
         onTouchTap={this.handleClose}
         onClick={this.handleCreateUser}

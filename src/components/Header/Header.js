@@ -22,23 +22,18 @@ class Header extends Component {
 
   render() {
     return (
-      <Toolbar className='toolbar-menu'>
-        <ToolbarGroup firstChild={true}>
-          <DropDownMenu value={this.state.value} onChange={this.handleChange}>
-            <MenuItem value={1} primaryText="All Broadcasts" />
-            <MenuItem value={2} primaryText="All Voice" />
-            <MenuItem value={3} primaryText="All Text" />
-            <MenuItem value={4} primaryText="Complete Voice" />
-            <MenuItem value={5} primaryText="Complete Text" />
-            <MenuItem value={6} primaryText="Active Voice" />
-            <MenuItem value={7} primaryText="Active Text" />
-          </DropDownMenu>
-        </ToolbarGroup>
-        <ToolbarGroup>
-          <LoginModal />
-          <RegisterModal />
-        </ToolbarGroup>
-      </Toolbar>
+      <div className="container">
+        <Toolbar className='toolbar-menu'>
+          <ToolbarGroup firstChild={true}>
+            <img src="logotipo.png" height="45px" />
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <LoginModal />
+            <RegisterModal />
+          </ToolbarGroup>
+        </Toolbar>
+      </div>
+
     );
   }
 }

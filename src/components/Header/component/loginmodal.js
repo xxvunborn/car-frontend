@@ -6,7 +6,7 @@ import FontIcon from 'material-ui/FontIcon';
 import TextField from 'material-ui/TextField';
 
 const customContentStyle = {
-  width: '45%',
+  width: '30%',
   maxWidth: 'none',
 };
 
@@ -40,11 +40,14 @@ const customContentStyle = {
         onTouchTap={this.handleClose}
       />,
       <RaisedButton
-        backgroundColor="#000"
+        backgroundColor="#FF5252"
         labelColor="#FFF"
-        label="Aceptar"
+        label="Ingresar"
         buttonStyle={{
           borderRadius: 0
+        }}
+        style={{
+          boxShadow: 0
         }}
         onTouchTap={this.handleClose}
       />,
@@ -53,13 +56,16 @@ const customContentStyle = {
     return (
       <div>
         <RaisedButton
-          backgroundColor="#000"
+          backgroundColor="#FF5252"
           labelColor="#FFF"
           label="Iniciar Sesión"
           buttonStyle={{
             borderRadius: 0
           }}
           onTouchTap={this.handleOpen}
+          style={{
+            boxShadow: 0
+          }}
         />
         <Dialog title="INICIAR SESIÓN" actions={actions} open={this.state.open} contentStyle={customContentStyle} className='text-center'>
           <TextField
