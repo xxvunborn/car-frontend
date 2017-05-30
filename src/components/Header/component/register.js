@@ -9,12 +9,28 @@ const customContentStyle = {
   maxWidth: 'none',
 };
 
+const initialState = {
+  passVerification: "",
+  disabled: "",
+  error: "",
+  open: false,
+  user: {
+    email: "",
+    first_name: "",
+    last_name: "",
+    phone: "",
+    password: "",
+    payment_method: "debit"
+  }
+}
+
 export default class RegisterModal extends Component {
   constructor(){
     super();
-    this.state = {
-      open: false
-    }
+    this.state = initialState;
+    this.onClick = this.onClick.bind(this);
+    this.handleCreateUser = this.handleCreateUser.bind(this);
+    this.handlePasswordVerification = this.handlePasswordVerification.bind(this);
   }
 
   handleOpen = () => {
@@ -23,6 +39,44 @@ export default class RegisterModal extends Component {
 
   handleClose = () => {
     this.setState({open: false});
+  };
+
+  handleChangeValue = (e) => {
+    var u = this.state.user
+    if(u.hasOwnProperty(e.target.name)) {
+      u[e.target.name] = e.target.value
+      this.setState({user: u})
+    }
+  };
+
+  handlePasswordVerification = (e) => {
+    this.setState({passVerification: e.target.value},
+        function() {
+              if (this.state.user.password === this.state.passVerification) {
+              console.log("samepassword")
+                this.setState({disabled: true})
+            } else {
+              console.log("incorrect passwords")
+                this.setState({disabled: false})
+            }
+        })
+  }
+
+  handleCreateUser() {
+    fetch('http://localhost:9000/sign-in', {
+          method: 'POST',
+          headers: {
+            "content-type": "application/json",
+            "Accept": "application/json",
+          },
+          body: JSON.stringify({
+            "client": this.state.user }),
+    })
+  };
+
+  onClick() {
+    console.log("when clicking, the form data is:");
+    console.log(this.state.user);
   };
 
   render() {
@@ -42,10 +96,12 @@ export default class RegisterModal extends Component {
         backgroundColor="#000"
         labelColor="#FFF"
         label="Aceptar"
+        disabled={!this.state.disabled}
         buttonStyle={{
           borderRadius: 0
         }}
         onTouchTap={this.handleClose}
+        onClick={this.handleCreateUser}
       />,
     ];
 
@@ -68,6 +124,9 @@ export default class RegisterModal extends Component {
                 fullWidth={true}
                 floatingLabelStyle={{color: '#4c5661'}}
                 underlineFocusStyle={{borderColor: '#000'}}
+                name = "first_name"
+                value={this.state.user.firstname}
+                onChange={this.handleChangeValue}
               />
               <TextField
                 hintText="Escriba su correo electrónico"
@@ -75,6 +134,9 @@ export default class RegisterModal extends Component {
                 fullWidth={true}
                 floatingLabelStyle={{color: '#4c5661'}}
                 underlineFocusStyle={{borderColor: '#000'}}
+                name = "email"
+                value={this.state.user.email}
+                onChange={this.handleChangeValue}
               />
               <TextField
                 hintText="Escriba su contraseña"
@@ -83,6 +145,9 @@ export default class RegisterModal extends Component {
                 fullWidth={true}
                 floatingLabelStyle={{color: '#4c5661'}}
                 underlineFocusStyle={{borderColor: '#000'}}
+                name = "password"
+                value={this.state.user.password}
+                onChange={this.handleChangeValue}
               />
             </div>
             <div className="col l6">
@@ -92,6 +157,9 @@ export default class RegisterModal extends Component {
                 fullWidth={true}
                 floatingLabelStyle={{color: '#4c5661'}}
                 underlineFocusStyle={{borderColor: '#000'}}
+                name = "last_name"
+                value={this.state.user.last_name}
+                onChange={this.handleChangeValue}
               />
               <TextField
                 hintText="Escriba su número de contacto"
@@ -99,6 +167,9 @@ export default class RegisterModal extends Component {
                 fullWidth={true}
                 floatingLabelStyle={{color: '#4c5661'}}
                 underlineFocusStyle={{borderColor: '#000'}}
+                name = "phone"
+                value={this.state.user.phone}
+                onChange={this.handleChangeValue}
               />
               <TextField
                 hintText="Repita su contraseña"
@@ -107,6 +178,9 @@ export default class RegisterModal extends Component {
                 fullWidth={true}
                 floatingLabelStyle={{color: '#4c5661'}}
                 underlineFocusStyle={{borderColor: '#000'}}
+                name = "passVerification"
+                value={this.state.passVerification}
+                onChange={this.handlePasswordVerification}
               />
             </div>
           </div>
