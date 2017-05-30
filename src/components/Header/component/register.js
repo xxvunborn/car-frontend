@@ -127,7 +127,7 @@ export default class RegisterModal extends Component {
                 floatingLabelStyle={{color: '#4c5661'}}
                 underlineFocusStyle={{borderColor: '#000'}}
                 name = "first_name"
-                value={this.state.user.firstname}
+                value={this.state.user.first_name}
                 onChange={this.handleChangeValue}
               />
               <TextField
