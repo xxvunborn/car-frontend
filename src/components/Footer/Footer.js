@@ -7,7 +7,7 @@ class Footer extends Component {
   render() {
     return (
         <footer>
-          <div class="mui-container mui--text-center">
+          <div className="mui-container mui--text-center">
             Made with ♥ by <a href="#">TRIBILINES</a>
           </div>
         </footer>

@@ -112,7 +112,6 @@ export default class RegisterModal extends Component {
       <div>
         <FlatButton
           label="Crear Cuenta"
-          labelColor="#000"
           style={{
             marginLeft: 10
           }}
