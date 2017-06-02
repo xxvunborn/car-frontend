@@ -38,8 +38,7 @@ const customContentStyle = {
     }
   };
 
-  handleLogin = () => {
-    console.log(this.state.user)
+  handleSubmit = () => {
     fetch('https://automotive-api.herokuapp.com/login', {
           method: 'POST',
           headers: {
@@ -49,7 +48,7 @@ const customContentStyle = {
           body: JSON.stringify({
             "credentials": this.state.user }),
     })
-    .then(resp => console.log(resp))
+    .then(resp => console.log(resp) || this.handleClose())
   }
 
   checkValuesForm = () => {
@@ -83,7 +82,7 @@ const customContentStyle = {
         style={{
           boxShadow: 0
         }}
-        onTouchTap={this.handleLogin}
+        onTouchTap={this.handleSubmit}
       />,
     ];
 
