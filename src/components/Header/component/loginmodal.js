@@ -48,7 +48,22 @@ const customContentStyle = {
           body: JSON.stringify({
             "credentials": this.state.user }),
     })
-    .then(resp => console.log(resp) || this.handleClose())
+    .then((response) => {
+      response.json().then(data => ({
+        data: data,
+        status: response.status
+      })
+      ).then(response => {
+        console.log(response.status, response.data.data.token)
+          if(response.status != 201){
+            console.log("HANDLE ERROR!")
+          }else{
+            sessionStorage.setItem('jwtToken', response.data.data.token);
+            console.log(sessionStorage.getItem('jwtToken'))
+            this.handleClose()
+          }
+      })
+    })
   }
 
   checkValuesForm = () => {
