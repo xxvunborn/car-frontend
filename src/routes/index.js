@@ -10,7 +10,6 @@ import DashboardRoute from './Dashboard'
 
 const isAuthenticated = () => {
   if(!sessionStorage.jwtToken){
-    console.log("not authenticated")
     browserHistory.push('/');
   }
 }
