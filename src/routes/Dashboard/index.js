@@ -1,7 +1,7 @@
 import { injectReducer } from '../../store/reducers'
 
 export default (store, auth) => ({
-  path : 'counter',
+  path : 'dashboard',
   onEnter: auth,
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
@@ -10,16 +10,12 @@ export default (store, auth) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Counter = require('./containers/CounterContainer').default
-      const reducer = require('./modules/counter').default
-
-      /*  Add the reducer to the store on key 'counter'  */
-      injectReducer(store, { key: 'counter', reducer })
+      const Dashboard = require('./containers/DashboardContainer').default
 
       /*  Return getComponent   */
-      cb(null, Counter)
+      cb(null, Dashboard)
 
     /* Webpack named bundle   */
-    }, 'counter')
+    }, 'dashboard')
   }
 })

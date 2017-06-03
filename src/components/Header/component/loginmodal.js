@@ -4,6 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import TextField from 'material-ui/TextField';
+import { browserHistory } from 'react-router';
 
 const customContentStyle = {
   width: '30%',
@@ -60,8 +61,9 @@ const customContentStyle = {
           }else{
             sessionStorage.setItem('jwtToken', response.data.data.token);
             console.log(sessionStorage.getItem('jwtToken'))
-            this.handleClose()
+            browserHistory.push('/dashboard');
           }
+          this.handleClose()
       })
     })
   }
