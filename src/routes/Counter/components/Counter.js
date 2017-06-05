@@ -11,6 +11,8 @@ export const Counter = ({ counter, increment, doubleAsync }) => (
     <button className='btn btn-secondary' onClick={doubleAsync}>
       Double (Async)
     </button>
+    <br />
+    <b>If u see this, you are login</b>
   </div>
 )
 Counter.propTypes = {

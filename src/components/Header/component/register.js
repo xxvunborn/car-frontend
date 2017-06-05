@@ -63,7 +63,7 @@ export default class RegisterModal extends Component {
   }
 
   handleCreateUser() {
-    fetch('http://localhost:9000/sign-in', {
+    fetch('https://automotive-api.herokuapp.com/sign-in', {
           method: 'POST',
           headers: {
             "content-type": "application/json",
