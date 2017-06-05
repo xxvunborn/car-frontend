@@ -60,7 +60,7 @@ const customContentStyle = {
             console.log("HANDLE ERROR!")
           }else{
             sessionStorage.setItem('jwtToken', response.data.data.token);
-            browserHistory.push('/dashboard/index');
+            browserHistory.push('/dashboard');
           }
           this.handleClose()
       })
