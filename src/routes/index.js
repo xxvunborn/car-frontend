@@ -1,6 +1,7 @@
 // We only need to import the modules necessary for initial render
 import { browserHistory } from 'react-router';
 import CoreLayout from '../layouts/PageLayout/PageLayout'
+import dashboardLayout from '../layouts/LoggedLayout/PageLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
 import DashboardRoute from './Dashboard'
@@ -14,13 +15,27 @@ const isAuthenticated = () => {
   }
 }
 
+const isLoggedIn = () => {
+  if(sessionStorage.jwtToken){
+    browserHistory.push('dashboard/index')
+  }
+}
+
 export const createRoutes = (store) => ({
   path        : '/',
-  component   : CoreLayout,
-  indexRoute  : Home,
-  childRoutes : [
-    CounterRoute(store, isAuthenticated),
-    DashboardRoute(store, isAuthenticated)
+  childRoutes : [{
+    component   : CoreLayout,
+    indexRoute  : Home,
+    onEnter     : isLoggedIn,
+  },
+  {
+    path      : '/dashboard',
+    component : dashboardLayout,
+    onEnter   : isAuthenticated,
+      childRoutes : [
+        DashboardRoute(store)
+      ]
+  }
   ]
 })
 
