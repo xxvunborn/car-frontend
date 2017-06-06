@@ -50,7 +50,7 @@ export default class RegisterModal extends Component {
   emailVerification = () => {
     const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
-    if (reg.test(this.state.user.email) == false) {
+    if (reg.test(this.state.user.email) === false) {
         return false;
     }
 
@@ -72,10 +72,8 @@ export default class RegisterModal extends Component {
   };
 
   isDisabled = () => {
-    if (this.state.user.firstName.length === "" || this.state.user.lastName === "" ||
-          this.state.user.email === ""     || this.state.user.phone === "" ||
-            this.state.user.password === "")
-    {
+    if (this.state.user.firstName === "" || this.state.user.lastName === "" ||
+     this.state.user.password === "") {
       console.log("missed variable")
       return true
     }
@@ -99,8 +97,6 @@ export default class RegisterModal extends Component {
   };
 
   handleSubmit() {
-    console.log(this.state.user, this.state.passVerification)
-    return
     fetch('https://automotive-api.herokuapp.com/sign-in', {
           method: 'POST',
           headers: {
