@@ -74,22 +74,18 @@ export default class RegisterModal extends Component {
   isDisabled = () => {
     if (this.state.user.firstName === "" || this.state.user.lastName === "" ||
      this.state.user.password === "") {
-      console.log("missed variable")
       return true
     }
 
     if (!this.emailVerification()){
-      console.log("invalid email")
       return true
     }
 
     if (!this.phoneVerification()){
-      console.log("invalid phone")
       return true
     }
 
     if (!this.arePasswordsEquals()){
-      console.log("Passwords are not equals")
       return true
     }
 
