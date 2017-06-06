@@ -47,6 +47,16 @@ export default class RegisterModal extends Component {
     }
   };
 
+  emailVerification = () => {
+    const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+    if (reg.test(this.state.user.email) == false) {
+        return false;
+    }
+
+    return true;
+  }
+
   phoneVerification = () => {
     if(this.state.user.phone.length !== 12) {
       return false
@@ -67,6 +77,11 @@ export default class RegisterModal extends Component {
             this.state.user.password === "")
     {
       console.log("missed variable")
+      return true
+    }
+
+    if (!this.emailVerification()){
+      console.log("invalid email")
       return true
     }
 
@@ -114,7 +129,6 @@ export default class RegisterModal extends Component {
         backgroundColor="#FF5252"
         labelColor="#FFF"
         label="Confirmar"
-        disabled={false}
         buttonStyle={{
           borderRadius: 0
         }}
