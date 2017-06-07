@@ -16,21 +16,21 @@ class HomeView extends Component{
 
           <div className="container">
             <div className="row">
-              <div className="col l3 left-align">
+              <div className="col-md-4 left-align">
                 <h4 className="main-title">Lorem ipsum dolor sit amet</h4>
                 <p className="description-title">Lorem ipsum dolor sit amet, consectetur adipiscing
                   elit. Etiam consectetur pulvinar magna eget
                   vestibulum. In iaculis fringilla consequat. Morbi
                   tempor magna ac ex malesuada porta.</p>
               </div>
-              <div className="col l3 left-align">
+              <div className="col-md-4 left-align">
                 <h4 className="main-title">Lorem ipsum dolor sit amet</h4>
                 <p className="description-title">Lorem ipsum dolor sit amet, consectetur adipiscing
                   elit. Etiam consectetur pulvinar magna eget
                   vestibulum. In iaculis fringilla consequat. Morbi
                   tempor magna ac ex malesuada porta.</p>
               </div>
-              <div className="col l3 left-align">
+              <div className="col-md-4 left-align">
                 <h4 className="main-title">Lorem ipsum dolor sit amet</h4>
                 <p className="description-title">Lorem ipsum dolor sit amet, consectetur adipiscing
                   elit. Etiam consectetur pulvinar magna eget
@@ -46,7 +46,7 @@ class HomeView extends Component{
 
             <div className="container">
               <div className="row">
-                <div className="col l4">
+                <div className="col-md-6">
                   <h1 className="title-testimonials">Llega a tu destino aún <br />más rápido</h1>
                   <p className="description-testimonials">Nuestra comunidad de conductores está formada por
                     personas de diferentes orígenes y con experiencias e intereses distintos. Pero es lo que
@@ -64,7 +64,6 @@ class HomeView extends Component{
                     fullWidth={true}
                   />
                 </div>
-                <div className="col l8"></div>
               </div>
 
             </div>
@@ -75,10 +74,10 @@ class HomeView extends Component{
 
           <div className="container">
             <div className="row">
-              <div className="col l8">
+              <div className="col-md-8">
                 input
               </div>
-              <div className="col l4">
+              <div className="col-md-4">
                 botón
               </div>
             </div>
