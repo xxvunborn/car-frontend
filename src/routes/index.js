@@ -1,9 +1,10 @@
 // We only need to import the modules necessary for initial render
 import { browserHistory } from 'react-router';
 import CoreLayout from '../layouts/PageLayout/PageLayout'
+import dashboardLayout from '../layouts/LoggedLayout/PageLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
-import DashboardRoute from './Dashboard'
+import dashboardRoute from './Dashboard'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -14,13 +15,28 @@ const isAuthenticated = () => {
   }
 }
 
+const isLoggedIn = () => {
+  if(sessionStorage.jwtToken){
+    browserHistory.push('dashboard')
+  }
+}
+
 export const createRoutes = (store) => ({
   path        : '/',
-  component   : CoreLayout,
-  indexRoute  : Home,
-  childRoutes : [
-    CounterRoute(store, isAuthenticated),
-    DashboardRoute(store, isAuthenticated)
+  childRoutes : [{
+    component   : CoreLayout,
+    indexRoute  : Home,
+    onEnter     : isLoggedIn,
+  },
+  {
+    path      : '/dashboard',
+    component : dashboardLayout,
+    onEnter   : isAuthenticated,
+    indexRoute: dashboardRoute(store),
+      childRoutes : [
+        //DashboardRoute(store) example of child route like  /dashboard/index
+      ]
+  }
   ]
 })
 
