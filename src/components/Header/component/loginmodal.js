@@ -47,7 +47,8 @@ const customContentStyle = {
             "Accept": "application/json",
           },
           body: JSON.stringify({
-            "credentials": this.state.user }),
+            "credentials": this.state.user
+          }),
     })
     .then((response) => {
       response.json().then(data => ({
@@ -119,7 +120,7 @@ const customContentStyle = {
         <Dialog title="INICIAR SESIÓN" actions={actions} open={this.state.open} contentStyle={customContentStyle} className='text-center'>
           <TextField
             hintText="Escriba su email"
-            floatingLabelText="Usuario"
+            floatingLabelText="Email"
             fullWidth={true}
             name="email"
             floatingLabelStyle={{color: '#4c5661'}}
@@ -127,7 +128,7 @@ const customContentStyle = {
             onChange={this.handleChangeValue}
           />
           <TextField
-            hintText="Escriba su constraseña"
+            hintText="Escriba su contraseña"
             floatingLabelText="Contraseña"
             type="password"
             fullWidth={true}

@@ -9,6 +9,13 @@ import './Header.scss'
 import LoginModal from './component/loginmodal';
 import RegisterModal from './component/register';
 
+const isAuthenticated = () => {
+  /*if(sessionStorage.jwtToken){
+    return false
+  }*/
+  return true
+}
+
 class Header extends Component {
   constructor(props) {
     super(props)
@@ -21,20 +28,36 @@ class Header extends Component {
   handleChange = (event, index, value) => this.setState({value});
 
   render() {
-    return (
-      <div className="container">
-        <Toolbar className='toolbar-menu'>
-          <ToolbarGroup firstChild={true}>
-            <img src="logotipo.png" height="45px" />
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <LoginModal />
-            <RegisterModal />
-          </ToolbarGroup>
-        </Toolbar>
-      </div>
+    if(isAuthenticated){
+      return (
+        <div className="container">
+          <Toolbar className='toolbar-menu'>
+            <ToolbarGroup firstChild={true}>
+              <img src="logotipo.png" height="45px" />
+            </ToolbarGroup>
+            <ToolbarGroup>
+              <LoginModal />
+              <RegisterModal />
+            </ToolbarGroup>
+          </Toolbar>
+        </div>
+      );
+    }
+    else{
+      return (
+        <div className="container">
+          <Toolbar className='toolbar-menu'>
+            <ToolbarGroup firstChild={true}>
+              <img src="logotipo.png" height="45px" />
+            </ToolbarGroup>
+            <ToolbarGroup>
 
-    );
+            </ToolbarGroup>
+          </Toolbar>
+        </div>
+      );
+    }
+
   }
 }
 export default Header
