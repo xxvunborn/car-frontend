@@ -102,6 +102,24 @@ export default class RegisterModal extends Component {
           body: JSON.stringify({
             "client": this.state.user }),
     })
+    .then(resp => {
+      if(resp.status === 201){
+        this.setState({
+          open: false,
+          passVerification: "",
+          user: {
+            email: "",
+            firstName: "",
+            lastName: "",
+            phone: "+569",
+            password: "",
+            payment_method: "debit"
+          }
+        });
+      }else{
+        alert("UPS... intetalo nuevamente");
+      }
+    })
   };
 
   render() {
