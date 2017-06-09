@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import Header from '../../components/Header'
+import HeaderLogged from '../../components/Header/HeaderLogged'
 import Footer from '../../components/footer'
 import PropTypes from 'prop-types'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -13,6 +13,7 @@ import './PageLayout.scss'
 const PageLayout = ({ children }) => (
   <MuiThemeProvider>
     <div className="text-center">
+      <HeaderLogged />
       <div className="page-layout__viewport">
         {children}
       </div>

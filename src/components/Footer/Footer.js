@@ -8,7 +8,8 @@ class Footer extends Component {
     return (
         <footer>
           <div className="mui-container mui--text-center">
-            Made with ♥ by <a href="#">TRIBILINES</a>
+            <p className="gray-color font-light">Made with <b>♥</b> by <a href="/"><b className="gray-color">Tribilines</b></a></p>
+            <p></p>
           </div>
         </footer>
         )
