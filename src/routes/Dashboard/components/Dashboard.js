@@ -3,15 +3,9 @@ import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import './Dashboard.scss'
 
-const handleLoguOut = () => {
-    sessionStorage.removeItem('jwtToken')
-    browserHistory.push('/');
-}
-
 export const Dashboard = () => (
-  <div>
-    <button className="button-logout" onClick={handleLoguOut} type="button">Logout</button>
 
+  <div>
       <div className="container">
         <div className="box-content">
           <div className="row">
@@ -109,9 +103,8 @@ export const Dashboard = () => (
       </div>
 
       <br /><br /><br />
-
-
   </div>
+  
 )
 
 export default Dashboard

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon';
 import './HomeView.scss'
 
 class HomeView extends Component{
@@ -17,6 +18,7 @@ class HomeView extends Component{
           <div className="container">
             <div className="row">
               <div className="col-md-4 left-align">
+                <img src="ico-robot.png" width="40%" />
                 <h4 className="main-title">Lorem ipsum dolor sit amet</h4>
                 <p className="description-title">Lorem ipsum dolor sit amet, consectetur adipiscing
                   elit. Etiam consectetur pulvinar magna eget
@@ -24,6 +26,7 @@ class HomeView extends Component{
                   tempor magna ac ex malesuada porta.</p>
               </div>
               <div className="col-md-4 left-align">
+                <img src="ico-robot.png" width="40%" />
                 <h4 className="main-title">Lorem ipsum dolor sit amet</h4>
                 <p className="description-title">Lorem ipsum dolor sit amet, consectetur adipiscing
                   elit. Etiam consectetur pulvinar magna eget
@@ -31,6 +34,7 @@ class HomeView extends Component{
                   tempor magna ac ex malesuada porta.</p>
               </div>
               <div className="col-md-4 left-align">
+                <img src="ico-robot.png" width="40%" />
                 <h4 className="main-title">Lorem ipsum dolor sit amet</h4>
                 <p className="description-title">Lorem ipsum dolor sit amet, consectetur adipiscing
                   elit. Etiam consectetur pulvinar magna eget
@@ -70,20 +74,44 @@ class HomeView extends Component{
 
           </div>
 
-          <br /><br /><br />
 
-          <div className="container">
-            <div className="row">
-              <div className="col-md-8">
-                input
+
+          <div className="box-cities">
+
+            <div className="container">
+
+              <div className="row">
+                <div className="col-md-8 left-align">
+                  <h2 className="title-cities"><b><span className="red-color">tcars</span> está en Santiago</b><br />y otras ciudades en todo Chile</h2>
+                </div>
               </div>
-              <div className="col-md-4">
-                botón
+
+              <br /><br /><br />
+
+              <div className="row">
+                <div className="col-md-8 left-align">
+                  <input className="input-cities-form" placeholder="Encuentra una ciudad"/>
+                    <RaisedButton
+                      backgroundColor="#FF5252"
+                      icon={<FontIcon className="material-icons" color="#FFF">arrow_forward</FontIcon>}
+                      buttonStyle={{
+                        borderRadius: 0,
+                        width: 50,
+                        boxShadow: 0
+                      }}
+                      style={{
+                        minWidth: 50,
+                        height: 48,
+                        boxShadow: 0,
+                        borderRadius: 0
+                      }}
+                    />
+                </div>
               </div>
+
             </div>
-          </div>
 
-          <br /><br /><br />
+          </div>
 
         </div>
     )

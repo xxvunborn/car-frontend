@@ -56,3 +56,35 @@
   text-align: left;
   font-weight: 300;
 }
+
+.box-cities{
+  padding: 8% 0;
+  background-color: #f5f5f5;
+}
+
+.title-cities{
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+input.input-cities-form{
+  width: 84%;
+  padding: 0 3%;
+  height: 45px;
+  border: 0;
+  background-color: #FFF;
+  font-weight: 300;
+  font-size: .9rem;
+}
+
+.input.input-cities-form:hover,
+input.input-cities-form:focus{
+  outline: none;
+}
+
+.button-cities-form{
+  width: 10%;
+  height: 30px;
+  background-color: #FF5252;
+  border: 0;
+}
