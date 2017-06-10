@@ -9,29 +9,23 @@ const customContentStyle = {
   maxWidth: 'none',
 };
 
-const initialState = {
-  passVerification: "",
-  disabled: "",
-  error: "",
-  open: false,
-  user: {
-    email: "",
-    first_name: "",
-    last_name: "",
-    phone: "",
-    password: "",
-    payment_method: "debit"
-  }
-}
-
 export default class RegisterModal extends Component {
   constructor(){
     super();
-    this.state = initialState;
-    this.onClick = this.onClick.bind(this);
-    this.handleCreateUser = this.handleCreateUser.bind(this);
-    this.handlePasswordVerification = this.handlePasswordVerification.bind(this);
-  }
+    this.state = {
+      open: false,
+      passVerification: "",
+      user: {
+        email: "",
+        firstName: "",
+        lastName: "",
+        phone: "+569",
+        password: "",
+        payment_method: "debit"
+      }
+    };
+    this.handleSubmit = this.handleSubmit.bind(this)
+  };
 
   handleOpen = () => {
     this.setState({open: true});
@@ -39,6 +33,10 @@ export default class RegisterModal extends Component {
 
   handleClose = () => {
     this.setState({open: false});
+  };
+
+  handleChangePassVerification = (e) => {
+    this.setState({passVerification: e.target.value})
   };
 
   handleChangeValue = (e) => {
@@ -49,20 +47,52 @@ export default class RegisterModal extends Component {
     }
   };
 
-  handlePasswordVerification = (e) => {
-    this.setState({passVerification: e.target.value},
-        function() {
-              if (this.state.user.password === this.state.passVerification) {
-              console.log("samepassword")
-                this.setState({disabled: true})
-            } else {
-              console.log("incorrect passwords")
-                this.setState({disabled: false})
-            }
-        })
+  emailVerification = () => {
+    const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+    if (reg.test(this.state.user.email) === false) {
+        return false;
+    }
+
+    return true;
   }
 
-  handleCreateUser() {
+  phoneVerification = () => {
+    if(this.state.user.phone.length !== 12) {
+      return false
+    }
+    return true
+  };
+
+  arePasswordsEquals = () => {
+    if(this.state.user.password !== this.state.passVerification){
+      return false
+    }
+    return true
+  };
+
+  isDisabled = () => {
+    if (this.state.user.firstName === "" || this.state.user.lastName === "" ||
+     this.state.user.password === "") {
+      return true
+    }
+
+    if (!this.emailVerification()){
+      return true
+    }
+
+    if (!this.phoneVerification()){
+      return true
+    }
+
+    if (!this.arePasswordsEquals()){
+      return true
+    }
+
+    return false
+  };
+
+  handleSubmit() {
     fetch('https://automotive-api.herokuapp.com/sign-in', {
           method: 'POST',
           headers: {
@@ -72,11 +102,24 @@ export default class RegisterModal extends Component {
           body: JSON.stringify({
             "client": this.state.user }),
     })
-  };
-
-  onClick() {
-    console.log("when clicking, the form data is:");
-    console.log(this.state.user);
+    .then(resp => {
+      if(resp.status === 201){
+        this.setState({
+          open: false,
+          passVerification: "",
+          user: {
+            email: "",
+            firstName: "",
+            lastName: "",
+            phone: "+569",
+            password: "",
+            payment_method: "debit"
+          }
+        });
+      }else{
+        alert("UPS... intetalo nuevamente");
+      }
+    })
   };
 
   render() {
@@ -95,16 +138,15 @@ export default class RegisterModal extends Component {
       <RaisedButton
         backgroundColor="#FF5252"
         labelColor="#FFF"
-        label="Crear Cuenta"
-        disabled={!this.state.disabled}
+        label="Confirmar"
         buttonStyle={{
           borderRadius: 0
         }}
         style={{
           boxShadow: 0
         }}
-        onTouchTap={this.handleClose}
-        onClick={this.handleCreateUser}
+        disabled={this.isDisabled()}
+        onClick={this.handleSubmit}
       />,
     ];
 
@@ -117,7 +159,7 @@ export default class RegisterModal extends Component {
           }}
           onTouchTap={this.handleOpen}
         />
-      <Dialog title="NUEVA CUENTA" actions={actions} open={this.state.open} contentStyle={customContentStyle} className="text-center">
+        <Dialog title="NUEVA CUENTA" actions={actions} open={this.state.open} contentStyle={customContentStyle} className="text-center">
           <div className="row">
             <div className="col l6">
               <TextField
@@ -126,8 +168,8 @@ export default class RegisterModal extends Component {
                 fullWidth={true}
                 floatingLabelStyle={{color: '#4c5661'}}
                 underlineFocusStyle={{borderColor: '#000'}}
-                name = "first_name"
-                value={this.state.user.first_name}
+                name = "firstName"
+                value={this.state.user.firstName}
                 onChange={this.handleChangeValue}
               />
               <TextField
@@ -159,8 +201,8 @@ export default class RegisterModal extends Component {
                 fullWidth={true}
                 floatingLabelStyle={{color: '#4c5661'}}
                 underlineFocusStyle={{borderColor: '#000'}}
-                name = "last_name"
-                value={this.state.user.last_name}
+                name = "lastName"
+                value={this.state.user.lastName}
                 onChange={this.handleChangeValue}
               />
               <TextField
@@ -182,7 +224,7 @@ export default class RegisterModal extends Component {
                 underlineFocusStyle={{borderColor: '#000'}}
                 name = "passVerification"
                 value={this.state.passVerification}
-                onChange={this.handlePasswordVerification}
+                onChange={this.handleChangePassVerification}
               />
             </div>
           </div>

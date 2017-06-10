@@ -56,14 +56,13 @@ const customContentStyle = {
         status: response.status
       })
       ).then(response => {
-        console.log(response.status, response.data.data.token)
           if(response.status != 201){
-            console.log("HANDLE ERROR!")
+            alert("Usuario o Contraseña incorrecto")
           }else{
             sessionStorage.setItem('jwtToken', response.data.data.token);
             browserHistory.push('/dashboard');
+            this.handleClose()
           }
-          this.handleClose()
       })
     })
   }
