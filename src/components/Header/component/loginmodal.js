@@ -11,7 +11,7 @@ const customContentStyle = {
   maxWidth: 'none',
 };
 
- class LoginModal extends Component {
+class LoginModal extends Component {
   constructor(){
     super();
     this.state = {
@@ -58,9 +58,10 @@ const customContentStyle = {
       ).then(response => {
           if(response.status != 201){
             alert("Usuario o Contraseña incorrecto")
-          }else{
-            sessionStorage.setItem('jwtToken', response.data.data.token);
-            browserHistory.push('/dashboard');
+          }
+          else{
+            sessionStorage.setItem('jwtToken', response.data.data.token)
+            browserHistory.push('/dashboard', response.data)
             this.handleClose()
           }
       })
@@ -116,7 +117,11 @@ const customContentStyle = {
             boxShadow: 0
           }}
         />
-        <Dialog title="INICIAR SESIÓN" actions={actions} open={this.state.open} contentStyle={customContentStyle} className='text-center'>
+        <Dialog title="INICIAR SESIÓN"
+          actions={actions}
+          open={this.state.open}
+          contentStyle={customContentStyle}
+          className='text-center'>
           <TextField
             hintText="Escriba su email"
             floatingLabelText="Email"

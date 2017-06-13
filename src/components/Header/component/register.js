@@ -159,9 +159,14 @@ export default class RegisterModal extends Component {
           }}
           onTouchTap={this.handleOpen}
         />
-        <Dialog title="NUEVA CUENTA" actions={actions} open={this.state.open} contentStyle={customContentStyle} className="text-center">
+        <Dialog title="NUEVA CUENTA"
+          actions={actions}
+          open={this.state.open}
+          contentStyle={customContentStyle}
+          className="text-center">
+
           <div className="row">
-            <div className="col l6">
+            <div className="col-md-6">
               <TextField
                 hintText="Escriba su nombre"
                 floatingLabelText="Nombre"
@@ -172,6 +177,23 @@ export default class RegisterModal extends Component {
                 value={this.state.user.firstName}
                 onChange={this.handleChangeValue}
               />
+            </div>
+            <div className="col-md-6">
+              <TextField
+                hintText="Escriba sus apellidos"
+                floatingLabelText="Apellidos"
+                fullWidth={true}
+                floatingLabelStyle={{color: '#4c5661'}}
+                underlineFocusStyle={{borderColor: '#000'}}
+                name = "lastName"
+                value={this.state.user.lastName}
+                onChange={this.handleChangeValue}
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-6">
               <TextField
                 hintText="Escriba su correo electrónico"
                 floatingLabelText="Correo Electrónico"
@@ -182,6 +204,23 @@ export default class RegisterModal extends Component {
                 value={this.state.user.email}
                 onChange={this.handleChangeValue}
               />
+            </div>
+            <div className="col-md-6">
+              <TextField
+                hintText="Escriba su número de contacto"
+                floatingLabelText="Número Teléfonico"
+                fullWidth={true}
+                floatingLabelStyle={{color: '#4c5661'}}
+                underlineFocusStyle={{borderColor: '#000'}}
+                name = "phone"
+                value={this.state.user.phone}
+                onChange={this.handleChangeValue}
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-6">
               <TextField
                 hintText="Escriba su contraseña"
                 floatingLabelText="Contraseña"
@@ -194,27 +233,7 @@ export default class RegisterModal extends Component {
                 onChange={this.handleChangeValue}
               />
             </div>
-            <div className="col l6">
-              <TextField
-                hintText="Escriba sus apellidos"
-                floatingLabelText="Apellidos"
-                fullWidth={true}
-                floatingLabelStyle={{color: '#4c5661'}}
-                underlineFocusStyle={{borderColor: '#000'}}
-                name = "lastName"
-                value={this.state.user.lastName}
-                onChange={this.handleChangeValue}
-              />
-              <TextField
-                hintText="Escriba su número de contacto"
-                floatingLabelText="Número Teléfonico"
-                fullWidth={true}
-                floatingLabelStyle={{color: '#4c5661'}}
-                underlineFocusStyle={{borderColor: '#000'}}
-                name = "phone"
-                value={this.state.user.phone}
-                onChange={this.handleChangeValue}
-              />
+            <div className="col-md-6">
               <TextField
                 hintText="Repita su contraseña"
                 floatingLabelText="Repita Contraseña"
