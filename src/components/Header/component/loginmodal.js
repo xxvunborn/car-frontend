@@ -40,7 +40,7 @@ class LoginModal extends Component {
   };
 
   handleSubmit = () => {
-    fetch('https://automotive-api.herokuapp.com/login', {
+    fetch('https://automotive-api.herokuapp.com/sign-in', {
           method: 'POST',
           headers: {
             "content-type": "application/json",

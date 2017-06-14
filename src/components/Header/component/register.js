@@ -93,7 +93,7 @@ export default class RegisterModal extends Component {
   };
 
   handleSubmit() {
-    fetch('https://automotive-api.herokuapp.com/sign-in', {
+    fetch('https://automotive-api.herokuapp.com/sign-up', {
           method: 'POST',
           headers: {
             "content-type": "application/json",
