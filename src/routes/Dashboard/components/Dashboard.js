@@ -15,7 +15,8 @@ class Dashboard extends Component{
         last_name: "",
         phone: "",
         payment_method: ""
-      }
+      },
+      cars: {}
     }
   }
 
@@ -45,7 +46,8 @@ class Dashboard extends Component{
                 last_name: response.data.data.user.last_name,
                 phone: response.data.data.user.phone,
                 payment_method: response.data.data.payment_method
-              }
+              },
+              cars: response.data.data.cars
             });
           }
       })
@@ -60,7 +62,7 @@ class Dashboard extends Component{
               <div className="row">
                 <div className="col-md-4">
                   <img src="profile-img.jpg" className="image-profile" />
-                  <h4 className="margin-none">{this.state.user.first_name} {this.state.user.last_name}</h4>
+                  <h4 className="margin-none">{this.state.user.first_name +" "+ this.state.user.last_name}</h4>
                   <h6 className="font-light">{this.state.user.email}</h6>
                 </div>
                 <div className="col-md-5 border-left-box">
@@ -73,7 +75,7 @@ class Dashboard extends Component{
                 </div>
                 <div className="col-md-3 border-left-box">
                   <h4>Automóviles inscritos</h4>
-                  <h1 className="number-cars font-light">3</h1>
+                  <h1 className="number-cars font-light">{this.state.cars == null ? '0' : 'N'}</h1>
                 </div>
               </div>
             </div>

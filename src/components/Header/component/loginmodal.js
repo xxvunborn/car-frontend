@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import Dialog from 'material-ui/Dialog';
+import {Tabs, Tab} from 'material-ui/Tabs';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
 import TextField from 'material-ui/TextField';
 import { browserHistory } from 'react-router';
 
 const customContentStyle = {
-  width: '30%',
+  width: '40%',
   maxWidth: 'none',
 };
 
@@ -16,10 +16,15 @@ class LoginModal extends Component {
     super();
     this.state = {
       open: false,
+      valueTab: 'client',
       user: {
         email: "",
         password: ""
-      }
+      },
+      mechanic: {
+        emailMechanic: "",
+        passwordMechanic: ""
+      },
     }
   }
 
@@ -28,7 +33,17 @@ class LoginModal extends Component {
   };
 
   handleClose = () => {
-    this.setState({open: false});
+    this.setState({
+      open: false,
+      user: {
+        email: "",
+        password: ""
+      },
+      mechanic: {
+        emailMechanic: "",
+        passwordMechanic: ""
+      },
+    });
   };
 
   handleChangeValue = (e) => {
@@ -37,6 +52,20 @@ class LoginModal extends Component {
       u[e.target.name] = e.target.value
       this.setState({user: u})
     }
+  };
+
+  handleChangeValueMechanic = (e) => {
+    const m = this.state.mechanic
+    if(m.hasOwnProperty(e.target.name)){
+      m[e.target.name] = e.target.value
+      this.setState({mechanic: m})
+    }
+  }
+
+  handleChangeTab = (value) => {
+    this.setState({
+      valueTab: value,
+    });
   };
 
   handleSubmit = () => {
@@ -68,6 +97,10 @@ class LoginModal extends Component {
     })
   }
 
+  handleSubmitMechanic = () => {
+    console.log('fetch para mecanico')
+  }
+
   checkValuesForm = () => {
     if (this.state.user.email === "" || this.state.user.password === "" ){
       return false
@@ -75,34 +108,14 @@ class LoginModal extends Component {
     return true
   }
 
-  render() {
-    const actions = [
-      <RaisedButton
-        label="Cancelar"
-        buttonStyle={{
-          borderRadius: 0,
-        }}
-        style={{
-          boxShadow: 0,
-          marginRight: 10
-        }}
-        onTouchTap={this.handleClose}
-      />,
-      <RaisedButton
-        backgroundColor="#FF5252"
-        labelColor="#FFF"
-        label="Ingresar"
-        disabled={!this.checkValuesForm()}
-        buttonStyle={{
-          borderRadius: 0
-        }}
-        style={{
-          boxShadow: 0
-        }}
-        onTouchTap={this.handleSubmit}
-      />,
-    ];
+  checkValuesFormMechanic = () => {
+    if (this.state.mechanic.emailMechanic === "" || this.state.mechanic.passwordMechanic === "" ){
+      return false
+    }
+    return true
+  }
 
+  render() {
     return (
       <div>
         <RaisedButton
@@ -118,29 +131,140 @@ class LoginModal extends Component {
           }}
         />
         <Dialog title="INICIAR SESIÓN"
-          actions={actions}
           open={this.state.open}
           contentStyle={customContentStyle}
           className='text-center'>
-          <TextField
-            hintText="Escriba su email"
-            floatingLabelText="Email"
-            fullWidth={true}
-            name="email"
-            floatingLabelStyle={{color: '#4c5661'}}
-            underlineFocusStyle={{borderColor: '#000'}}
-            onChange={this.handleChangeValue}
-          />
-          <TextField
-            hintText="Escriba su contraseña"
-            floatingLabelText="Contraseña"
-            type="password"
-            fullWidth={true}
-            name="password"
-            floatingLabelStyle={{color: '#4c5661'}}
-            underlineFocusStyle={{borderColor: '#000'}}
-            onChange={this.handleChangeValue}
-          />
+          <Tabs
+            value={this.state.value}
+            onChange={this.handleChangeTab}
+            tabItemContainerStyle={{backgroundColor:'#FFF'}}
+            inkBarStyle={{background:'#FF5252'}}
+          >
+             <Tab
+               label="Cliente"
+               value="client"
+               style={{color:'#000'}}
+               >
+               <div>
+                 <TextField
+                   hintText="Escriba su email"
+                   floatingLabelText="Email"
+                   fullWidth={true}
+                   name="email"
+                   floatingLabelStyle={{color:'#4c5661'}}
+                   underlineFocusStyle={{borderColor:'#000'}}
+                   onChange={this.handleChangeValue}
+                 />
+                 <TextField
+                   hintText="Escriba su contraseña"
+                   floatingLabelText="Contraseña"
+                   type="password"
+                   fullWidth={true}
+                   name="password"
+                   floatingLabelStyle={{color:'#4c5661'}}
+                   underlineFocusStyle={{borderColor:'#000'}}
+                   onChange={this.handleChangeValue}
+                 />
+
+                <br /><br /><br />
+
+                <div className="row">
+                  <div className="col-md-6">
+                    <RaisedButton
+                      label="Cancelar"
+                      buttonStyle={{
+                        borderRadius: 0,
+                      }}
+                      style={{
+                        boxShadow: 0,
+                        marginRight: 10
+                      }}
+                      onTouchTap={this.handleClose}
+                      fullWidth={true}
+                    />
+                  </div>
+                  <div className="col-md-6">
+                    <RaisedButton
+                      backgroundColor="#FF5252"
+                      labelColor="#FFF"
+                      label="Ingresar"
+                      disabled={!this.checkValuesForm()}
+                      buttonStyle={{
+                        borderRadius: 0
+                      }}
+                      style={{
+                        boxShadow: 0
+                      }}
+                      onTouchTap={this.handleSubmit}
+                      fullWidth={true}
+                    />
+                  </div>
+                </div>
+               </div>
+             </Tab>
+             <Tab
+               label="Mecánico"
+               value="mechanic"
+               style={{color:'#000'}}
+              >
+               <div>
+                 <TextField
+                   hintText="Escriba su email"
+                   floatingLabelText="Email"
+                   fullWidth={true}
+                   name="emailMechanic"
+                   floatingLabelStyle={{color:'#4c5661'}}
+                   underlineFocusStyle={{borderColor:'#000'}}
+                   onChange={this.handleChangeValueMechanic}
+                 />
+                 <TextField
+                   hintText="Escriba su contraseña"
+                   floatingLabelText="Contraseña"
+                   type="password"
+                   fullWidth={true}
+                   name="passwordMechanic"
+                   floatingLabelStyle={{color:'#4c5661'}}
+                   underlineFocusStyle={{borderColor:'#000'}}
+                   onChange={this.handleChangeValueMechanic}
+                 />
+
+                 <br /><br /><br />
+
+                 <div className="row">
+                   <div className="col-md-6">
+                     <RaisedButton
+                       label="Cancelar"
+                       buttonStyle={{
+                         borderRadius: 0,
+                       }}
+                       style={{
+                         boxShadow: 0,
+                         marginRight: 10
+                       }}
+                       onTouchTap={this.handleClose}
+                       fullWidth={true}
+                     />
+                   </div>
+                   <div className="col-md-6">
+                     <RaisedButton
+                       backgroundColor="#FF5252"
+                       labelColor="#FFF"
+                       label="Ingresar"
+                       disabled={!this.checkValuesFormMechanic()}
+                       buttonStyle={{
+                         borderRadius: 0
+                       }}
+                       style={{
+                         boxShadow: 0
+                       }}
+                       onTouchTap={this.handleSubmitMechanic}
+                       fullWidth={true}
+                     />
+                   </div>
+                 </div>
+               </div>
+             </Tab>
+           </Tabs>
         </Dialog>
       </div>
     );
