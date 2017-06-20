@@ -31,6 +31,16 @@ class MyProfile extends Component {
     });
   };
 
+  handleDashboard = () => {
+    browserHistory.push('/dashboard')
+    this.handleRequestClose()
+  }
+
+  handleCars = () => {
+    browserHistory.push('/car')
+    this.handleRequestClose()
+  };
+
   render(){
     return (
       <div>
@@ -55,12 +65,19 @@ class MyProfile extends Component {
             targetOrigin={{horizontal: 'left', vertical: 'top'}}
             onRequestClose={this.handleRequestClose}
             animation={PopoverAnimationVertical}
+            zDepth={0}
+            className="popover-style"
           >
             <Menu>
-              <MenuItem primaryText="Refresh" />
-              <MenuItem primaryText="Help &amp; feedback" />
-              <MenuItem primaryText="Settings" />
-              <MenuItem primaryText="Sign out" />
+              <MenuItem
+                primaryText="Mi dashboard"
+                onTouchTap={this.handleDashboard}
+              />
+            <MenuItem primaryText="Mi perfil"/>
+              <MenuItem
+                primaryText="Mis automóviles"
+                onTouchTap={this.handleCars}
+              />
             </Menu>
           </Popover>
       </div>

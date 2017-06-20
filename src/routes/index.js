@@ -5,6 +5,7 @@ import dashboardLayout from '../layouts/LoggedLayout/PageLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
 import dashboardRoute from './Dashboard'
+import carRoute from './Car'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -35,6 +36,15 @@ export const createRoutes = (store) => ({
     indexRoute: dashboardRoute(store),
       childRoutes : [
         //DashboardRoute(store) example of child route like  /dashboard/index
+      ]
+  },
+  {
+    path      : '/car',
+    component : dashboardLayout,
+    onEnter   : isAuthenticated,
+    indexRoute: carRoute(store),
+      childRoutes : [
+        //
       ]
   }
   ]
