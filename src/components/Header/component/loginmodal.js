@@ -90,7 +90,7 @@ class LoginModal extends Component {
           }
           else{
             sessionStorage.setItem('jwtToken', response.data.data.token)
-            browserHistory.push('/dashboard', response.data)
+            browserHistory.push('/client', response.data)
             this.handleClose()
           }
       })
@@ -122,7 +122,7 @@ class LoginModal extends Component {
           }
           else{
             sessionStorage.setItem('jwtToken', response.data.data.token)
-            browserHistory.push('/dashboard', response.data)
+            browserHistory.push('/mechanic', response.data)
             this.handleClose()
           }
       })

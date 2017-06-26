@@ -4,9 +4,11 @@ import CoreLayout from '../layouts/PageLayout/PageLayout'
 import dashboardLayout from '../layouts/LoggedLayout/PageLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
-import dashboardRoute from './Dashboard'
+import clientdashboardRoute from './Client/Dashboard'
 import carRoute from './Car'
-import MechanicRoute from './Mechanic'
+import mechanicDashboardRoute from './Mechanic/Dashboard'
+import profileRoute from './Client/Profile'
+import CarRoute from './Mechanic/Car'
 
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -31,21 +33,23 @@ export const createRoutes = (store) => ({
     onEnter     : isLoggedIn,
   },
   {
-    path      : '/dashboard',
+    path      : '/client',
     component : dashboardLayout,
     onEnter   : isAuthenticated,
-    indexRoute: dashboardRoute(store),
+    indexRoute: clientdashboardRoute(store),
       childRoutes : [
         //DashboardRoute(store) example of child route like  /dashboard/index
+        profileRoute(store),
       ]
   },
   {
     path      : '/mechanic',
     component : dashboardLayout,
     onEnter   : isAuthenticated,
-    indexRoute: MechanicRoute(store),
+    indexRoute: mechanicDashboardRoute(store),
       childRoutes : [
         //DashboardRoute(store) example of child route like  /dashboard/index
+        CarRoute(store),
       ]
   },
   {
