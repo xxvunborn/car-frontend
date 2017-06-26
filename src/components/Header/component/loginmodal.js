@@ -98,7 +98,35 @@ class LoginModal extends Component {
   }
 
   handleSubmitMechanic = () => {
-    console.log('fetch para mecanico')
+    // BORRA EL CONSOLE LOG UNA VEZ DE QUE TE FUNCIONE BIEN
+    console.log(this.state.mechanic)
+    fetch('https://automotive-api.herokuapp.com/sign-in', {
+    // CAMBIA ESTA URL POR LA DEL MECANICO
+          method: 'POST',
+          headers: {
+            "content-type": "application/json",
+            "Accept": "application/json",
+          },
+          body: JSON.stringify({
+            "credentials": this.state.mechanic
+          }),
+    })
+    .then((response) => {
+      response.json().then(data => ({
+        data: data,
+        status: response.status
+      })
+      ).then(response => {
+          if(response.status != 201){
+            alert("Usuario o Contraseña incorrecto")
+          }
+          else{
+            sessionStorage.setItem('jwtToken', response.data.data.token)
+            browserHistory.push('/dashboard', response.data)
+            this.handleClose()
+          }
+      })
+    })
   }
 
   checkValuesForm = () => {
