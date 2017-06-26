@@ -1,4 +1,4 @@
-import { injectReducer } from '../../store/reducers'
+import { injectReducer } from '../../../store/reducers'
 
 export default (store, auth) => ({
   /*  Async getComponent is only invoked when route matches   */
@@ -8,12 +8,12 @@ export default (store, auth) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Mechanic = require('./containers/MechanicContainer').default
+      const Dashboard = require('./containers/DashboardContainer').default
 
       /*  Return getComponent   */
-      cb(null, Mechanic)
+      cb(null, Dashboard)
 
     /* Webpack named bundle   */
-    }, 'mechanic')
+    }, 'dashboard')
   }
 })
