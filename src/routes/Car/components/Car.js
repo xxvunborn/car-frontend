@@ -28,7 +28,8 @@ class Car extends Component{
         fuel: "",
         transmission: "",
         usage: ""
-      }
+      },
+      cars: {brand: "hola"}
     }
   };
 
@@ -106,6 +107,55 @@ class Car extends Component{
     })
   };
 
+  handleFetchUserCars = () => {
+    fetch('https://automotive-api.herokuapp.com/api/clients/cars', {
+          method: 'POST',
+          headers: {
+            "Authorization": "Bearer " + sessionStorage.jwtToken,
+            "content-type": "application/json",
+            "Accept": "application/json",
+          },
+          body: JSON.stringify({
+            "car": this.state.newCar
+          }),
+    })
+    .then(resp => {
+      if(resp.status === 201){
+        console.log('correcto')
+      }else{
+        console.log('incorrecto')
+      }
+      console.log(this.state.newCar)
+    })
+  };
+
+  componentWillMount = () => {
+    fetch('https://automotive-api.herokuapp.com/api/clients/me', {
+      method: 'GET',
+      headers: {
+        "Authorization": "Bearer " + sessionStorage.jwtToken
+      }
+    })
+    .then((response) => {
+      response.json().then(data => ({
+        data: data,
+        status: response.status
+      }))
+      .then(response => {
+          if(response.status != 200){
+            console.log("error")
+            browserHistory.push('/')
+          }
+          else{
+            console.log(response)
+            this.setState({
+              cars: response.data.data.cars
+            });
+          }
+      })
+    })
+  }
+
   render(){
     const actions = [
       <RaisedButton
@@ -164,6 +214,81 @@ class Car extends Component{
       <MenuItem key={2} value={2} primaryText="Media" />,
       <MenuItem key={3} value={3} primaryText="Alta" />,
     ];
+
+    var cars =[]
+      console.log(this.state.cars)
+      for (var x in this.state.cars){
+        cars.push(
+              <div className="col-md-4">
+                <img src="car-1.png" className="image-car" />
+                <h5 className="font-light">{this.state.cars[x].brand}</h5>
+                <h6><b className="red-color">Patente</b>{this.state.cars[x].plate}</h6>
+                  <RaisedButton
+                    onTouchTap={this.handleModalAddIssue}
+                    backgroundColor="#000"
+                    labelColor="#FFF"
+                    label="Agregar Falla"
+                    buttonStyle={{
+                        borderRadius: 0
+                    }}
+                    style={{
+                      boxShadow: 0,
+                      marginTop: 20,
+                      marginBottom: 20,
+                      marginRight: 5
+                    }}
+                  />
+                  <Dialog
+                    title="AGREGAR FALLA"
+                    actions={actionsIssue}
+                    modal={false}
+                    contentStyle={customContentStyle}
+                    open={this.state.openModalIssue}
+                    onRequestClose={this.handleCloseModalAddCar}
+                    className="text-center"
+                  >
+                    <div className="row">
+                      <div className="col-md-12">
+                        <TextField
+                          floatingLabelText="Falla"
+                          hintText="Escriba una descripción de su falla"
+                          fullWidth={true}
+                          floatingLabelStyle={{color: '#4c5661'}}
+                          underlineFocusStyle={{borderColor: '#000'}}
+                          name="falla"
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6 left-align">
+                        <SelectField
+                          value={this.state.value}
+                          onChange={this.handleChange}
+                          floatingLabelText="Prioridad de falla"
+                          selectedMenuItemStyle={{color: '#FF5252'}}
+                          floatingLabelStyle={{color: '#4c5661'}}
+                          underlineFocusStyle={{borderColor: '#000'}}
+                        >
+                          {items}
+                        </SelectField>
+                      </div>
+                      <div className="col-md-6 left-align">
+                        <SelectField
+                          floatingLabelText="Difícultad de falla"
+                          value={this.state.value}
+                          onChange={this.handleChange}
+                          selectedMenuItemStyle={{color: '#FF5252'}}
+                          floatingLabelStyle={{color: '#4c5661'}}
+                          underlineFocusStyle={{borderColor: '#000'}}
+                        >
+                          {items}
+                        </SelectField>
+                      </div>
+                    </div>
+                  </Dialog>
+              </div>
+            )
+      }
 
     return(
       <div>
@@ -303,118 +428,12 @@ class Car extends Component{
           </div>
         </div>
 
-        <br />
-
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4">
-              <img src="car-1.png" className="image-car" />
-              <h5 className="font-light">BMW 3 Series Gran Turismo</h5>
-              <h6><b className="red-color">Patente</b> BB CL 34</h6>
-              <RaisedButton
-                onTouchTap={this.handleModalAddIssue}
-                backgroundColor="#000"
-                labelColor="#FFF"
-                label="Agregar Falla"
-                buttonStyle={{
-                    borderRadius: 0
-                }}
-                style={{
-                  boxShadow: 0,
-                  marginTop: 20,
-                  marginBottom: 20,
-                  marginRight: 5
-                }}
-              />
-              <Dialog
-                title="AGREGAR FALLA"
-                actions={actionsIssue}
-                modal={false}
-                contentStyle={customContentStyle}
-                open={this.state.openModalIssue}
-                onRequestClose={this.handleCloseModalAddCar}
-                className="text-center"
-              >
-                <div className="row">
-                  <div className="col-md-12">
-                    <TextField
-                      floatingLabelText="Falla"
-                      hintText="Escriba una descripción de su falla"
-                      fullWidth={true}
-                      floatingLabelStyle={{color: '#4c5661'}}
-                      underlineFocusStyle={{borderColor: '#000'}}
-                      name="falla"
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 left-align">
-                    <SelectField
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                      floatingLabelText="Prioridad de falla"
-                      selectedMenuItemStyle={{color: '#FF5252'}}
-                      floatingLabelStyle={{color: '#4c5661'}}
-                      underlineFocusStyle={{borderColor: '#000'}}
-                    >
-                      {items}
-                    </SelectField>
-                  </div>
-                  <div className="col-md-6 left-align">
-                    <SelectField
-                      floatingLabelText="Difícultad de falla"
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                      selectedMenuItemStyle={{color: '#FF5252'}}
-                      floatingLabelStyle={{color: '#4c5661'}}
-                      underlineFocusStyle={{borderColor: '#000'}}
-                    >
-                      {items}
-                    </SelectField>
-                  </div>
-                </div>
-              </Dialog>
-            </div>
-            <div className="col-md-4">
-              <img src="car-2.png" className="image-car" />
-              <h5 className="font-light">BMW Serie 1</h5>
-              <h6><b className="red-color">Patente</b> CC NM 26</h6>
-              <RaisedButton
-                backgroundColor="#000"
-                labelColor="#FFF"
-                label="Agregar Falla"
-                buttonStyle={{
-                    borderRadius: 0
-                }}
-                style={{
-                  boxShadow: 0,
-                  marginTop: 20,
-                  marginBottom: 20,
-                  marginRight: 5
-                }}
-              />
-            </div>
-            <div className="col-md-4">
-              <img src="car-3.png" className="image-car" />
-              <h5 className="font-light">BMW Serie 6 Convertible</h5>
-              <h6><b className="red-color">Patente</b> DD KS 19</h6>
-              <RaisedButton
-                backgroundColor="#000"
-                labelColor="#FFF"
-                label="Agregar Falla"
-                buttonStyle={{
-                    borderRadius: 0
-                }}
-                style={{
-                  boxShadow: 0,
-                  marginTop: 20,
-                  marginBottom: 20,
-                  marginRight: 5
-                }}
-              />
-              </div>
+          <div className="container">
+            <div className="row">
+              { cars }
             </div>
           </div>
+        <br />
 
         <br /><br /><br />
 
