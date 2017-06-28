@@ -32,7 +32,12 @@ class MyProfile extends Component {
   };
 
   handleDashboard = () => {
-    browserHistory.push('/dashboard')
+    browserHistory.push('/client')
+    this.handleRequestClose()
+  }
+
+  handleProfile = () => {
+    browserHistory.push('/client/profile')
     this.handleRequestClose()
   }
 
@@ -73,7 +78,10 @@ class MyProfile extends Component {
                 primaryText="Mi dashboard"
                 onTouchTap={this.handleDashboard}
               />
-            <MenuItem primaryText="Mi perfil"/>
+              <MenuItem
+                primaryText="Mi perfil"
+                onTouchTap={this.handleProfile}
+              />
               <MenuItem
                 primaryText="Mis automóviles"
                 onTouchTap={this.handleCars}

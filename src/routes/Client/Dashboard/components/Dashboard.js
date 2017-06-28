@@ -75,7 +75,7 @@ class Dashboard extends Component{
                 </div>
                 <div className="col-md-3 border-left-box">
                   <h4>Automóviles inscritos</h4>
-                  <h1 className="number-cars font-light">{this.state.cars == null ? '0' : 'N'}</h1>
+                  <h1 className="number-cars font-light">3</h1>
                 </div>
               </div>
             </div>
