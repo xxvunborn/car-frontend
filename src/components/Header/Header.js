@@ -25,7 +25,7 @@ class Header extends Component {
         <div className="container">
           <Toolbar className='toolbar-menu'>
             <ToolbarGroup firstChild={true}>
-              <a href="/"><img src="logotipo.png" height="45px" /></a>
+              <img src="logotipo.png" height="45px" />
             </ToolbarGroup>
             <ToolbarGroup>
               <LoginModal />
