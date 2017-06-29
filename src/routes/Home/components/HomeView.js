@@ -9,7 +9,7 @@ class HomeView extends Component{
         <div>
           <div className="bg-banner" style={{ backgroundImage: 'url(background-banner.jpg)' }}>
             <div className="container">
-              <h1 className="title-banner"><b>La información de tu auto</b><br />En todo momento</h1>
+              <h1 className="title-banner"><b>Rastrea tu vehículo</b><br />Sin importar donde estes</h1>
             </div>
           </div>
 

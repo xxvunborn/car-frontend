@@ -222,7 +222,7 @@ class Car extends Component{
               <div className="col-md-4">
                 <img src="car-1.png" className="image-car" />
                 <h5 className="font-light">{this.state.cars[x].brand}</h5>
-                <h6><b className="red-color">Patente</b>{this.state.cars[x].plate}</h6>
+                <h6><b className="red-color">Patente </b>{this.state.cars[x].plate}</h6>
                   <RaisedButton
                     onTouchTap={this.handleModalAddIssue}
                     backgroundColor="#000"

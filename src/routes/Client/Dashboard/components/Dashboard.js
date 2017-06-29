@@ -1,13 +1,20 @@
 import React, {Component} from 'react'
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/Dialog';
 import './Dashboard.scss'
+
+const customContentStyle = {
+  width: '40%',
+  maxWidth: 'none',
+};
 
 class Dashboard extends Component{
 
   constructor(){
     super();
     this.state = {
+      modalState: false,
       user: {
         id: "",
         email: "",
@@ -55,7 +62,29 @@ class Dashboard extends Component{
     })
   }
 
+  handleModalState = () => {
+    this.setState({modalState: true});
+  };
+
+  handleModalStateClose = () => {
+    this.setState({modalState: false});
+  };
+
   render(){
+    const actionState = [
+      <RaisedButton
+        label="Cerrar"
+        buttonStyle={{
+          borderRadius: 0,
+        }}
+        style={{
+          boxShadow: 0,
+          marginRight: 10
+        }}
+        onTouchTap={this.handleModalStateClose}
+      />
+    ];
+
     var cars =[]
       console.log(this.state.cars)
       for (var x in this.state.cars){
@@ -63,8 +92,9 @@ class Dashboard extends Component{
               <div className="col-md-4">
                 <img src="car-1.png" className="image-car" />
                 <h5 className="font-light">{this.state.cars[x].brand}</h5>
-                <h6><b className="red-color">Patente</b>{this.state.cars[x].plate}</h6>
+                <h6><b className="red-color">Patente </b>{this.state.cars[x].plate}</h6>
                 <RaisedButton
+                  onTouchTap={this.handleModalState}
                   backgroundColor="#FF5252"
                   labelColor="#FFF"
                   label="Ver Estado"
@@ -77,6 +107,21 @@ class Dashboard extends Component{
                     marginBottom: 20
                   }}
                 />
+                <Dialog title="ESTADOD DE VEHÍCULO"
+                  actions={actionState}
+                  open={this.state.modalState}
+                  contentStyle={customContentStyle}
+                  className="text-center">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <img src="ico-robot.png" width="100%" />
+                    </div>
+                    <div className="col-md-6">
+                      <br /><br /><br />
+                      <h3>El automovil se encuentra en evaluación.</h3>
+                    </div>
+                  </div>
+                </Dialog>
               </div>
             )
       }
