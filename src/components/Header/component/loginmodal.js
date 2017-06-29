@@ -101,7 +101,7 @@ class LoginModal extends Component {
   handleSubmitMechanic = () => {
     // BORRA EL CONSOLE LOG UNA VEZ DE QUE TE FUNCIONE BIEN
     console.log(this.state.mechanic)
-    fetch('https://automotive-api.herokuapp.com/sign-in', {
+    fetch('https://automotive-api.herokuapp.com/mech-in', {
     // CAMBIA ESTA URL POR LA DEL MECANICO
           method: 'POST',
           headers: {
