@@ -40,12 +40,19 @@ export const createRoutes = (store) => ({
     indexRoute: clientdashboardRoute(store),
       childRoutes : [
         //DashboardRoute(store) example of child route like  /dashboard/index
-        profileRoute(store),
+      ]
+  },
+  {
+    path      : '/profile',
+    component : dashboardLayout,
+    onEnter   : isAuthenticated,
+    indexRoute: profileRoute(store),
+      childRoutes : [
       ]
   },
   {
     path      : '/mechanic',
-    component : MechanicLayout,
+    component : dashboardLayout,
     onEnter   : isAuthenticated,
     indexRoute: mechanicDashboardRoute(store),
       childRoutes : [

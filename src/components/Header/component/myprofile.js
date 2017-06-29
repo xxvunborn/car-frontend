@@ -37,7 +37,7 @@ class MyProfile extends Component {
   }
 
   handleProfile = () => {
-    browserHistory.push('/client/profile')
+    browserHistory.push('/profile')
     this.handleRequestClose()
   }
 
