@@ -1,6 +1,7 @@
 // We only need to import the modules necessary for initial render
 import { browserHistory } from 'react-router';
 import CoreLayout from '../layouts/PageLayout/PageLayout'
+import MechanicLayout from '../layouts/PageLayout/PageLayout'
 import dashboardLayout from '../layouts/LoggedLayout/PageLayout'
 import Home from './Home'
 import CounterRoute from './Counter'
@@ -44,7 +45,7 @@ export const createRoutes = (store) => ({
   },
   {
     path      : '/mechanic',
-    component : dashboardLayout,
+    component : MechanicLayout,
     onEnter   : isAuthenticated,
     indexRoute: mechanicDashboardRoute(store),
       childRoutes : [
